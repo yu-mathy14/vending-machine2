@@ -44,10 +44,8 @@ rl.question("投入金額を入力してください：", (answer1) =>{
     console.log(""); // 空白の行の挿入
 
     // 選択されたオブジェクトを表示
-    console.log("選択商品：");
-    console.log(selectedProduct);
-    console.log(selectedProduct.name);
-    console.log(selectedProduct.price);
+    console.log(`選択商品：${selectedProduct}`);
+    
 
     rl.close();
   });
