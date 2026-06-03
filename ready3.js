@@ -44,8 +44,20 @@ rl.question("投入金額を入力してください：", (answer1) =>{
     console.log(""); // 空白の行の挿入
 
     // 選択されたオブジェクトを表示
-    console.log(`選択商品：${selectedProduct}`);
+    // console.log(`選択商品：${selectedProduct}`);
     
+    // 条件分岐で購入可能か判定
+    if (num1 >= selectedProduct.price){
+      const change = num1 - selectedProduct.price
+      console.log(`選択商品：${selectedProduct}`);
+      console.log("購入に成功しました");
+      console.log(`おつり：${change}円`);
+    } else {
+      const short = selectedProduct.price - num1
+      console.log(`選択商品：${selectedProduct}`);
+      console.log("購入に失敗しました");
+      console.log(`おつり：${short}円`);
+    }
 
     rl.close();
   });
