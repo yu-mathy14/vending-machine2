@@ -1,0 +1,21 @@
+{
+  // 開発環境の名前
+  "name": "JavaScript研修",
+  // Dockerfileを使ってコンテナを作る
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      // VScodeのおすすめ拡張機能
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "christian-kohler.path-intellisense",
+        "formulahendry.code-runner"
+      ]
+    }
+  },
+  // コンテナの中ではnodeユーザーとして作業する
+  "remoteUser": "node"
+}
