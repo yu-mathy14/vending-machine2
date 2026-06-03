@@ -36,7 +36,13 @@ rl.question("投入金額を入力してください：", (answer1) =>{
   rl.question("商品番号を入力してください：", (answer2) =>{
     const num2 = Number(answer2);
     let index = num2 - 1;
-    console.log(index);
+    // 商品番号の入力チェック
+    if (index < 0 || index >= product.length) {
+      console.log("存在しない商品番号です");
+      break;
+    } else {
+      console.log(index);
+    }
 
     // 選択商品の変数定義
     const selectedProduct = product[index];
