@@ -21,13 +21,13 @@ const product = [water, tea, coffee];
 
 rl.question("投入金額を入力してください：", (answer1) =>{
   const num1 = Number(answer1);
-  console.log(`投入金額：${num1}円`);
   // abc入力チェック
-    if (num1 === NaN){
-      console.log("半角数字を入力してください");
-      rl.close();
-      return;
-    }
+  if (Number.isNaN(num1)) {
+    console.log("半角数字を入力してください");
+    rl.close();
+    return;
+  }
+  console.log(`投入金額：${num1}円`);
 
   console.log(""); // 空白の行の挿入
 
@@ -42,7 +42,7 @@ rl.question("投入金額を入力してください：", (answer1) =>{
   rl.question("商品番号を入力してください：", (answer2) =>{
     const num2 = Number(answer2);
     // abc入力チェック
-    if (num2 === NaN){
+    if (Number.isNaN(num2)) {
       console.log("半角数字を入力してください");
       rl.close();
       return;
