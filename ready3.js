@@ -54,9 +54,9 @@ rl.question("投入金額を入力してください：", (answer1) =>{
       console.log("存在しない商品番号です");
       rl.close();
       return;
-    } else {
-      console.log(index);
-    }
+    } //else {
+    //   console.log(index);
+    // }
 
     // 選択商品の変数定義
     const selectedProduct = product[index];
