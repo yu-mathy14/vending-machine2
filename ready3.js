@@ -37,12 +37,17 @@ rl.question("投入金額を入力してください：", (answer1) =>{
     const num2 = Number(answer2);
     let index = num2 - 1;
     console.log(index);
+
+    // 選択商品の変数定義
+    const selectedProduct = product[index];
   
     console.log(""); // 空白の行の挿入
 
     // 選択されたオブジェクトを表示
     console.log("選択商品：");
-    console.log(product[index]);
+    console.log(selectedProduct);
+    console.log(selectedProduct.name);
+    console.log(selectedProduct.price);
 
     rl.close();
   });
