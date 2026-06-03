@@ -2,7 +2,7 @@
 import { stdin as input, stdout as output } from "node:process";
 import * as readline from "node:readline";
 
-const rl1 = readline.createInterface({input, output});
+const rl = readline.createInterface({input, output});
 
 // 商品一覧の管理
 const water = {
@@ -19,7 +19,7 @@ const coffee = {
 };
 const product = [water, tea, coffee];
 
-rl1.question("投入金額を入力してください：", (answer1) =>{
+rl.question("投入金額を入力してください：", (answer1) =>{
   const num1 = Number(answer1);
   console.log(`投入金額：${num1}円`);
 
@@ -33,9 +33,7 @@ rl1.question("投入金額を入力してください：", (answer1) =>{
   console.log(""); // 空白の行の挿入
 
   // 商品番号入力
-  const rl2 = readline.createInterface({input, output});
-
-  rl2.question("商品番号を入力してください：", (answer2) =>{
+  rl.question("商品番号を入力してください：", (answer2) =>{
     const num2 = Number(answer2);
     let index = num2 - 1;
     console.log(index);
@@ -46,10 +44,8 @@ rl1.question("投入金額を入力してください：", (answer1) =>{
     console.log("選択商品：");
     console.log(product[index]);
 
-    rl2.close();
+    rl.close();
   });
-
-  rl1.close();
 
 });
 
