@@ -39,7 +39,8 @@ rl.question("投入金額を入力してください：", (answer1) =>{
     // 商品番号の入力チェック
     if (index < 0 || index >= product.length) {
       console.log("存在しない商品番号です");
-      break;
+      rl.close();
+      return;
     } else {
       console.log(index);
     }
