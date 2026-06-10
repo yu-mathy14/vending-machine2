@@ -5,6 +5,8 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "forwardPorts":[3000],
+  
   "customizations": {
     "vscode": {
       // VScodeのおすすめ拡張機能

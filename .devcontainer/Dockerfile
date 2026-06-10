@@ -6,6 +6,8 @@ FROM node:22-slim
 # 作業場所を決める
 WORKDIR /workspace
 
+COPY . .
+
 # グローバルにnodeが使えればJSの実行には十分
 # 必要に応じてpnpmやtypescriptを追加できる
 
