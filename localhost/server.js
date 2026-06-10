@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const server = http.createServer(function(req, res){
-  const filePath = path.join(__dirname, '..', 'localhost', 'index.html');
+  const filePath = path.join(__dirname, 'index.html');
 
   fs.readFile(filePath, 'utf-8', function(err, data) {
     if (err) {

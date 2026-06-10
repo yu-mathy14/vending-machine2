@@ -3,11 +3,44 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
-  <title>Test</title>
+  <title>自動販売機</title>
 </head>
 <body>
-  <h1>Hello</h1>
-  <button>ボタン</button>
+  <header>
+    <h1>Welcome to Vending Machine!</h1>
+  </header>
+
+  <!-- 投入金額入力 -->
+  <div>
+    <label>
+      投入金額：
+      <input type="number" id="money">
+    </label>
+  </div>
+
+  <br>
+
+  <!-- 商品一覧表示 -->
+  <div>
+    <label>
+      商品：
+      <select id="product">
+        <option value="0">水 120円</option>
+        <option value="1">お茶 150円</option>
+        <option value="2">コーヒー 130円</option>
+      </select>
+    </label>
+  </div>
+
+  <br>
+
+  <button id="buyBtn">購入する</button>
+
+  <hr>
+
+  <div id="result"></div>
+  
+  <footer></footer>
   <script src="index.js"></script>
 </body>
 </html>
