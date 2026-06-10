@@ -1,11 +1,5 @@
 console.log("====自動販売機====");
 
-// 投入金額の入力
-import { stdin as input, stdout as output } from "node:process";
-import * as readline from "node:readline";
-
-const rl = readline.createInterface({input, output});
-
 // 商品一覧の管理
 const water = {
   name: "水",
@@ -21,75 +15,61 @@ const coffee = {
 };
 const product = [water, tea, coffee];
 
-rl.question("投入金額を入力してください：", (answer1) =>{
-  const num1 = Number(answer1);
+// 商品一覧表示
+const select = document.getElementById("product");
+for( let i = 0; i < product.length; i++){
+  const option = document.createElement("option");
+
+  option.value = i + 1 ;
+  option.textContent = 
+    `${i + 1}：${product[i].name} ${product[i].price}円`;
+  
+  select.appendChild(option);
+}
+
+const buyBtn = document.getElementById('buyBtn');
+
+buyBtn.addEventListener("click", () => {
+  const num1 = Number(
+    document.getElementById("money").value
+  );
+  const result =document.getElementById("result");
   // abc入力チェック
-  if (Number.isNaN(num1)) {
-    console.log("半角数字を入力してください");
-    rl.close();
+  if (Number.isNaN(num1) || document.getElementById("money").value === ""){
+    result.textContent = "半角数字を入力してください";
     return;
   }
+
   console.log(`投入金額：${num1}円`);
 
-  console.log(""); // 空白の行の挿入
+  const num2 = Number(select.value);
+  let index = num2 - 1; 
 
-  // 商品一覧表示
-  for( let i = 0; i < product.length; i++){
-    console.log(`${i+1}: ${product[i].name} ${product[i].price}円`);
+  // 商品番号の入力チェック
+  if (index < 0 || index >= product.length){
+    result.textContent = "存在しない商品です";
+    return;
   }
 
-  console.log(""); // 空白の行の挿入
+  // 選択商品の変数定義
+  const selectedProduct = product[index];
 
-  // 商品番号入力
-  rl.question("商品番号を入力してください：", (answer2) =>{
-    const num2 = Number(answer2);
-    // abc入力チェック
-    if (Number.isNaN(num2)) {
-      console.log("半角数字を入力してください");
-      rl.close();
-      return;
-    }
+  // 条件分岐で購入可能か判定
+  if(num1 >= selectedProduct.price){
+    const change = num1 - selectedProduct.price;
 
-    let index = num2 - 1;
-    // 商品番号の入力チェック
-    if (index < 0 || index >= product.length) {
-      console.log("存在しない商品番号です");
-      rl.close();
-      return;
-    } //else {
-    //   console.log(index);
-    // }
+    result.innerHTML =`
+      <p>選択商品：${selectedProduct.namre}</p>
+      <p>購入に成功しました</p>
+      <p>おつり：${change}円</p>
+    `;
+  } else {
+    const short = selectedProduct.price = num1;
 
-    // 選択商品の変数定義
-    const selectedProduct = product[index];
-  
-    console.log(""); // 空白の行の挿入
-
-    // 選択されたオブジェクトを表示
-    // console.log(`選択商品：${selectedProduct}`);
-    
-    // 条件分岐で購入可能か判定
-    if (num1 >= selectedProduct.price){
-      const change = num1 - selectedProduct.price
-      console.log(`選択商品：${selectedProduct.name}`);
-      console.log("購入に成功しました");
-      console.log(`おつり：${change}円`);
-    } else {
-      const short = selectedProduct.price - num1
-      console.log(`選択商品：${selectedProduct.name}`);
-      console.log("購入に失敗しました");
-      console.log(`不足金額：${short}円`);
-    }
-
-    rl.close();
-  });
-
+    result.innerHTML = `
+      <p>選択商品：${selectedProduct.name}</p>
+      <p>購入に失敗しました</p>
+      <p>不足金額：${short}円</p>
+    `;
+  }
 });
-
-
-
-
-
-
-
-
