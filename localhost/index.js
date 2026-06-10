@@ -59,12 +59,12 @@ buyBtn.addEventListener("click", () => {
     const change = num1 - selectedProduct.price;
 
     result.innerHTML =`
-      <p>選択商品：${selectedProduct.namre}</p>
+      <p>選択商品：${selectedProduct.name}</p>
       <p>購入に成功しました</p>
       <p>おつり：${change}円</p>
     `;
   } else {
-    const short = selectedProduct.price = num1;
+    const short = selectedProduct.price - num1;
 
     result.innerHTML = `
       <p>選択商品：${selectedProduct.name}</p>
