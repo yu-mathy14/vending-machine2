@@ -10,24 +10,75 @@
     <h1>Welcome to Vending Machine!</h1>
   </header>
 
-  <!-- 投入金額入力 -->
-  <p>
-    <label>
-      投入金額：
-      <input type="number" id="money">
-    </label>
-  </p>
+  <!-- 商品一覧表示 -->
+  <section id="product-list">
+    <div class="card">
+      <img src="" alt="水">
+      <p class="product-name">水</p>
+      <p>100円</p>
+      <p class="card">つめたい</p>
+      <button>購入</button>
+    </div>
+
+    <div class="card">
+      <img src="" alt="お茶">
+      <p class="product-name">お茶</p>
+      <p>120円</p>
+      <p class="card">つめたい</p>
+      <button>購入</button>
+    </div>
+
+    <div class="card">
+      <img src="" alt="コーヒー">
+      <p class="product-name">コーヒー</p>
+      <p>130円</p>
+      <p class="card">つめたい</p>
+      <button>購入</button>
+    </div>
+
+    <div class="card">
+      <img src="" alt="コーンポタージュ">
+      <p class="product-name">コーンポタージュ</p>
+      <p>140円</p>
+      <p class="card">あたたかい</p>
+      <button>購入</button>
+    </div>
+
+    <div class="card">
+      <img src="" alt="ココア">
+      <p class="product-name">ココア</p>
+      <p>150円</p>
+      <p class="card">あたたかい</p>
+      <button>購入</button>
+    </div>
+
+    <div class="card">
+      <img src="" alt="お茶">
+      <p class="product-name">お茶</p>
+      <p>120円</p>
+      <p class="card">あたたかい</p>
+      <button>購入</button>
+    </div>
+  </section>
 
   <br>
 
-  <!-- 商品一覧表示 -->
-  <p>
-    <label>
-      商品：
-      <select id="product"></select>
-    </label>
-  </p>
+  <!-- 投入金額入力 -->
+  <section>
+    <h1>お金を投入</h1>
 
+    <div class="money-btns">
+      <button onclick="insertMoney(10)">10円</button>
+      <button onclick="insertMoney(50)">50円</button>
+      <button onclick="insertMoney(100)">100円</button>
+      <button onclick="insertMoney(500)">500円</button>
+      <button onclick="insertMoney(1000)">1000円</button>
+      <button onclick="insertMoney(2000)">2000円</button>
+      <button onclick="insertMoney(5000)">5000円</button>
+      <button onclick="insertMoney(10000)">10000円</button>
+    </div>
+
+  </section>
   <br>
 
   <button id="buyBtn">購入する</button>
