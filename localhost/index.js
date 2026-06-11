@@ -1,59 +1,72 @@
 console.log("====自動販売機====");
-
+// 飲み物温度の定数の定義
+/* 配列のtempのvalueに直接"あたたかい"や"つめたい"
+   を打ち込むとタイプミスの可能性あり */
+/* 後から温度の表記を変えたい時に楽
+ex) "あたたかい"->"HOT" "つめたい"->"COLD"など */
+const TEMP = {
+  HOT: "あったか〜い",
+  COLD: "つめた〜い"
+};
 // 商品を配列で管理
 const product = [
   {
     name: "水",
     price: 100,
-    temp: "つめたい",
+    temp: TEMP.COLD,
     stock: 5
   },
   {
     name: "お茶",
     price: 120,
-    temp: "つめたい",
+    temp: TEMP.COLD,
     stock: 5
   },
   {
     name: "コーヒー",
     price: 130,
-    temp: "つめたい",
+    temp: TEMP.COLD,
     stock: 5
   },
   {
     name: "コーンポタージュ",
     price: 140,
-    temp: "あたたかい",
+    temp: TEMP.HOT,
     stock: 5
   },
   {
     name: "ココア",
     price: 150,
-    temp: "あたたかい",
+    temp: TEMP.HOT,
     stock: 5
   },
   {
     name: "お茶",
     price: 120,
-    temp: "あたたかい",
+    temp: TEMP.HOT,
     stock: 5
   } 
 ];
 
 // 商品一覧表示
+/*  */
 const productList = document.getElementById("product-list");
 function renderProducts(){
   productList.innerHTML = "";
   product.forEach((item, index) => {
     // 温度判定の定義
     const tempClass =
-      item.temp === "あたたかい"
-        ? "hot"
-        : "cold";
+      item.temp === "あたたかい" ? "hot" : "cold";
 
     const card = document.createElement("div");
     card.className = "card";
-  
+
+    // 在庫0なら売切扱い
+    /* UI側の制御(利便性) -> 在庫が0になると購入ボタンを押せない */
+    const isSoldOut = item.stock <= 0;
+    const disabledAttr = isSoldOut ? "disabled" : "";
+    const buttonText = isSoldOut ? "売切" : "購入";
+
     card.innerHTML = `
       <p class="product-name">${item.name}
         <span>${item.price}円</span>
@@ -61,10 +74,8 @@ function renderProducts(){
       <p class="${tempClass}">${item.temp}</p>
       <p>在庫：${item.stock}</p>
 
-      <button
-        onclick="buyProduct(${index})"
-          ${item.stock <= 0 ? "disabled" : ""}>
-        ${item.stock <= 0 ? "売切" : "購入"}
+      <button onclick="buyProduct(${index})" ${disabledAttr}>
+        ${buttonText}
       </button>
     `;
 
@@ -105,13 +116,11 @@ function insertMoney(amount){
 
 // 購入処理
 function buyProduct(index) {
-  const selectedProduct =
-    product[index];
-
-  const result =
-    document.getElementById("result");
+  const selectedProduct = product[index];
 
   // 売切れチェック
+  /* 処理側の制御(正しさ)
+  -> 万が一buyProduct()が呼ばれても購入させないようにする */
   if(selectedProduct.stock <= 0){
     addLog(
     `${selectedProduct.name}は売り切れです`
