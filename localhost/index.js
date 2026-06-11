@@ -90,6 +90,52 @@ function insertMoney(amount){
   moneyDisplay.textContent = insertedMoney;
 }
 
+// 購入処理
+function buyProduct(index) {
+  const selectedProduct =
+    product[index];
+
+  const result =
+    document.getElementById("result");
+
+  // 売切れチェック
+  if (selectedProduct.stock <= 0) {
+    result.textContent =
+      "売り切れです";
+    return;
+  }
+
+  // 金額チェック
+  if (
+    insertedMoney <
+    selectedProduct.price
+  ) {
+    result.textContent =
+      `お金が ${
+        selectedProduct.price -
+        insertedMoney
+      }円不足しています`;
+
+    return;
+  }
+
+  // 購入成立
+  insertedMoney -=
+    selectedProduct.price;
+
+  selectedProduct.stock--;
+
+  moneyDisplay.textContent =
+    insertedMoney;
+
+  result.innerHTML = `
+    <p>${selectedProduct.name}を購入しました</p>
+    <p>残高：${insertedMoney}円</p>
+  `;
+
+  renderProducts();
+}
+
 const buyBtn = document.getElementById('buyBtn');
 
 buyBtn.addEventListener("click", () => {
