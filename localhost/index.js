@@ -6,37 +6,43 @@ const product = [
     name: "水",
     price: 100,
     temp: "つめたい",
-    image: ""
+    image: "",
+    stock: 5
   },
   {
     name: "お茶",
     price: 120,
     temp: "つめたい",
-    image: ""
+    image: "",
+    stock: 5
   },
   {
     name: "コーヒー",
     price: 130,
     temp: "つめたい",
-    image: ""
+    image: "",
+    stock: 5
   },
   {
     name: "コーンポタージュ",
     price: 140,
     temp: "あたたかい",
-    image: ""
+    image: "",
+    stock: 5
   },
   {
     name: "ココア",
     price: 150,
     temp: "あたたかい",
-    image: ""
+    image: "",
+    stock: 5
   },
   {
     name: "お茶",
     price: 120,
     temp: "あたたかい",
-    image: ""
+    image: "",
+    stock: 5
   } 
 ];
 
@@ -62,20 +68,19 @@ product.forEach((item, index) => {
   productList.appendChild(card);
 })
 
-// お金を投入
+// 投入金額の管理
 let insertedMoney = 0;
 
 const moneyDisplay =
   document.getElementById("money-display");
 
+// 投入時
 function insertMoney(amount){
   if(insertedMoney + amount > 1000){
     alert("1000円以上は投入できません");
     return;
   }
-
   insertedMoney += amount;
-
   moneyDisplay.textContent = insertedMoney;
 }
 
