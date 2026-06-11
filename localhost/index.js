@@ -1,6 +1,6 @@
 console.log("====自動販売機====");
 
-// 商品一覧の管理
+// 商品を配列で管理
 const product = [
   {
     name: "水",
@@ -91,6 +91,9 @@ function insertMoney(amount){
 }
 
 // 購入処理
+// 購入履歴管理用の配列
+let purchaseLog = [];
+
 function buyProduct(index) {
   const selectedProduct =
     product[index];
@@ -99,39 +102,33 @@ function buyProduct(index) {
     document.getElementById("result");
 
   // 売切れチェック
-  if (selectedProduct.stock <= 0) {
-    result.textContent =
-      "売り切れです";
+  if(selectedProduct.stock <= 0){
+    result.textContent ="売り切れです";
     return;
   }
 
   // 金額チェック
-  if (
-    insertedMoney <
-    selectedProduct.price
-  ) {
+  if(insertedMoney <selectedProduct.price){
     result.textContent =
-      `お金が ${
-        selectedProduct.price -
-        insertedMoney
-      }円不足しています`;
-
+      `お金が ${selectedProduct.price - insertedMoney}円不足しています`;
     return;
   }
 
   // 購入成立
-  insertedMoney -=
-    selectedProduct.price;
-
+  insertedMoney -= selectedProduct.price;
   selectedProduct.stock--;
 
-  moneyDisplay.textContent =
-    insertedMoney;
+  moneyDisplay.textContent = insertedMoney;
 
-  result.innerHTML = `
-    <p>${selectedProduct.name}を購入しました</p>
-    <p>残高：${insertedMoney}円</p>
-  `;
+  // ログの追加
+  purchaseLog.push(
+    `${selectedProduct.name}を購入しました(残高：${insertedMoney}円)`
+  );
+
+  // ログを全て表示
+  result.innerHTML = purchaseLog
+    .map(log => `<p>${log}</p>`)
+    .join(" ");
 
   renderProducts();
 }
