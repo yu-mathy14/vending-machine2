@@ -43,13 +43,17 @@ const product = [
 // 商品一覧表示
 const productList = document.getElementById("product-list");
 product.forEach((item, index) => {
+  // 温度判定の定義
+  const tempClass =
+    item.temp === "あたたかい" ? "hot" : "cold";
   const card = document.createElement("div");
   card.className = "card";
   card.innerHTML = `
-  <img src="{item.image}" alt="${item.name}">
-  <p class="product-name>${item.name}</p>
-  <p>${item.price}円</p>
-  <p>${item.temp}</p>
+  <img src="${item.image}" alt="${item.name}">
+  <p class="product-name">${item.name}
+    <span>${item.price}円</span>
+  </p>
+  <p class="${tempClass}">${item.temp}</p>
   <button onclick="buyProduct(${index})">
     購入
   </button>
