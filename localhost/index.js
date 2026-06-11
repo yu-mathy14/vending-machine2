@@ -43,7 +43,7 @@ const product = [
 // 商品一覧表示
 const productList = document.getElementById("product-list");
 function renderProducts(){
-  productList.innerHTML = " ";
+  productList.innerHTML = "";
   product.forEach((item, index) => {
     // 温度判定の定義
     const tempClass =
@@ -63,7 +63,7 @@ function renderProducts(){
 
       <button
         onclick="buyProduct(${index})"
-          ${item.stock <= 0 ? "disabled" : " "}>
+          ${item.stock <= 0 ? "disabled" : ""}>
         ${item.stock <= 0 ? "売切" : "購入"}
       </button>
     `;
@@ -72,6 +72,19 @@ function renderProducts(){
   });
 }
 renderProducts();
+
+// 履歴管理用の共通関数の定義
+const result = document.getElementById("result");
+
+let purchaseLog = [];
+
+function addLog(message) {
+  purchaseLog.push(message);
+
+  result.innerHTML = purchaseLog
+    .map(log => `<p>${log}</p>`)
+    .join("");
+}
 
 
 // 投入金額の管理
@@ -91,9 +104,6 @@ function insertMoney(amount){
 }
 
 // 購入処理
-// 購入履歴管理用の配列
-let purchaseLog = [];
-
 function buyProduct(index) {
   const selectedProduct =
     product[index];
@@ -103,32 +113,31 @@ function buyProduct(index) {
 
   // 売切れチェック
   if(selectedProduct.stock <= 0){
-    result.textContent ="売り切れです";
+    addLog(
+    `${selectedProduct.name}は売り切れです`
+    );
     return;
   }
 
-  // 金額チェック
+// 金額チェック
   if(insertedMoney <selectedProduct.price){
-    result.textContent =
-      `お金が ${selectedProduct.price - insertedMoney}円不足しています`;
+    addLog(
+      `購入失敗：${selectedProduct.name}の購入には ${
+      selectedProduct.price - insertedMoney}円不足しています`
+    );
     return;
   }
 
-  // 購入成立
+// 購入成立
   insertedMoney -= selectedProduct.price;
   selectedProduct.stock--;
 
   moneyDisplay.textContent = insertedMoney;
 
-  // ログの追加
-  purchaseLog.push(
-    `${selectedProduct.name}を購入しました(残高：${insertedMoney}円)`
+  // ログに追加
+  addLog(
+  `${selectedProduct.name}を購入しました(残高：${insertedMoney}円)`
   );
-
-  // ログを全て表示
-  result.innerHTML = purchaseLog
-    .map(log => `<p>${log}</p>`)
-    .join(" ");
 
   renderProducts();
 }
@@ -151,12 +160,9 @@ refundBtn.addEventListener(
 
     insertedMoney = 0;
 
-    moneyDisplay.textContent =
-      insertedMoney;
+    moneyDisplay.textContent = insertedMoney;
 
-    document.getElementById(
-      "result"
-    ).textContent =
-      "返金しました";
-  }
-);
+    addLog(
+      `${refundAmount}円を返金しました`
+    );
+});
