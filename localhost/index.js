@@ -6,67 +6,73 @@ const product = [
     name: "水",
     price: 100,
     temp: "つめたい",
-    image: "",
     stock: 5
   },
   {
     name: "お茶",
     price: 120,
     temp: "つめたい",
-    image: "",
     stock: 5
   },
   {
     name: "コーヒー",
     price: 130,
     temp: "つめたい",
-    image: "",
     stock: 5
   },
   {
     name: "コーンポタージュ",
     price: 140,
     temp: "あたたかい",
-    image: "",
     stock: 5
   },
   {
     name: "ココア",
     price: 150,
     temp: "あたたかい",
-    image: "",
     stock: 5
   },
   {
     name: "お茶",
     price: 120,
     temp: "あたたかい",
-    image: "",
     stock: 5
   } 
 ];
 
 // 商品一覧表示
 const productList = document.getElementById("product-list");
-product.forEach((item, index) => {
-  // 温度判定の定義
-  const tempClass =
-    item.temp === "あたたかい" ? "hot" : "cold";
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-  <img src="${item.image}" alt="${item.name}">
-  <p class="product-name">${item.name}
-    <span>${item.price}円</span>
-  </p>
-  <p class="${tempClass}">${item.temp}</p>
-  <button onclick="buyProduct(${index})">
-    購入
-  </button>
-  `;
+function renderProducts(){
+  productList.innerHTML = " ";
+  product.forEach((item, index) => {
+    // 温度判定の定義
+    const tempClass =
+      item.temp === "あたたかい"
+        ? "hot"
+        : "cold";
 
-  productList.appendChild(card);
-})
+    const card = document.createElement("div");
+    card.className = "card";
+  
+    card.innerHTML = `
+      <p class="product-name">${item.name}
+        <span>${item.price}円</span>
+      </p>
+      <p class="${tempClass}">${item.temp}</p>
+      <p>在庫：${item.stock}</p>
+
+      <button
+        onclick="buyProduct(${index})"
+          ${item.stock <= 0 ? "disabled" : " "}>
+        ${item.stock <= 0 ? "売切" : "購入"}
+      </button>
+    `;
+
+    productList.appendChild(card);
+  });
+}
+renderProducts();
+
 
 // 投入金額の管理
 let insertedMoney = 0;
