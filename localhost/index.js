@@ -154,6 +154,8 @@ refundBtn.addEventListener(
       return;
     }
 
+    const refundAmount = insertedMoney;
+
     alert(
       `${insertedMoney}円返却します`
     );
