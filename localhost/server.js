@@ -17,9 +17,11 @@ const server = http.createServer((req, res) => {
   let contentType = "text/plain";
 
   if (ext === ".html") {
-    contentType = "text/html";
+    contentType = "text/html"; // html用の設定
   } else if (ext === ".js") {
-    contentType = "text/javascript";
+    contentType = "text/javascript"; // js用の設定
+  } else if (ext === ".css") {
+    contentType = "text/css"; // css用の設定
   }
 
   fs.readFile(filePath, (err, data) => {
