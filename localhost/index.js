@@ -1,19 +1,44 @@
 console.log("====自動販売機====");
 
 // 商品一覧の管理
-const water = {
-  name: "水",
-  price: 120
-};
-const tea = {
-  name: "お茶",
-  price: 150
-};
-const coffee = {
-  name: "コーヒー",
-  price: 130
-};
-const product = [water, tea, coffee];
+const product = [
+  {
+    name: "水",
+    price: 100,
+    temp: "つめたい",
+    image: ""
+  },
+  {
+    name: "お茶",
+    price: 120,
+    temp: "つめたい",
+    image: ""
+  },
+  {
+    name: "コーヒー",
+    price: 130,
+    temp: "つめたい",
+    image: ""
+  },
+  {
+    name: "コーンポタージュ",
+    price: 140,
+    temp: "あたたかい",
+    image: ""
+  },
+  {
+    name: "ココア",
+    price: 150,
+    temp: "あたたかい",
+    image: ""
+  },
+  {
+    name: "お茶",
+    price: 120,
+    temp: "あたたかい",
+    image: ""
+  } 
+];
 
 // 商品一覧表示
 const select = document.getElementById("product");
