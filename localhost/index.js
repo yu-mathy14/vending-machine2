@@ -56,7 +56,7 @@ function renderProducts(){
   product.forEach((item, index) => {
     // 温度判定の定義
     const tempClass =
-      item.temp === "あたたかい" ? "hot" : "cold";
+      item.temp === TEMP.HOT ? "hot" : "cold";
 
     const card = document.createElement("div");
     card.className = "card";
