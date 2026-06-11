@@ -136,47 +136,30 @@ function buyProduct(index) {
   renderProducts();
 }
 
-const buyBtn = document.getElementById('buyBtn');
+// 返金機能
+const refundBtn =
+  document.getElementById("refundBtn");
 
-buyBtn.addEventListener("click", () => {
-  const num1 = insertedMoney;
-  const result =document.getElementById("result");
-  // abc入力チェック
-  if (Number.isNaN(num1) || document.getElementById("money").value === ""){
-    result.textContent = "半角数字を入力してください";
-    return;
+refundBtn.addEventListener(
+  "click",
+  () => {
+    if (insertedMoney === 0) {
+      alert("返金するお金がありません");
+      return;
+    }
+
+    alert(
+      `${insertedMoney}円返却します`
+    );
+
+    insertedMoney = 0;
+
+    moneyDisplay.textContent =
+      insertedMoney;
+
+    document.getElementById(
+      "result"
+    ).textContent =
+      "返金しました";
   }
-
-  console.log(`投入金額：${num1}円`);
-
-  const num2 = Number(select.value);
-  let index = num2 - 1; 
-
-  // 商品番号の入力チェック
-  if (index < 0 || index >= product.length){
-    result.textContent = "存在しない商品です";
-    return;
-  }
-
-  // 選択商品の変数定義
-  const selectedProduct = product[index];
-
-  // 条件分岐で購入可能か判定
-  if(num1 >= selectedProduct.price){
-    const change = num1 - selectedProduct.price;
-
-    result.innerHTML =`
-      <p>選択商品：${selectedProduct.name}</p>
-      <p>購入に成功しました</p>
-      <p>おつり：${change}円</p>
-    `;
-  } else {
-    const short = selectedProduct.price - num1;
-
-    result.innerHTML = `
-      <p>選択商品：${selectedProduct.name}</p>
-      <p>購入に失敗しました</p>
-      <p>不足金額：${short}円</p>
-    `;
-  }
-});
+);
