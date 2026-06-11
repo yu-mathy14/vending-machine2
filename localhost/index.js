@@ -41,23 +41,44 @@ const product = [
 ];
 
 // 商品一覧表示
-const select = document.getElementById("product");
-for( let i = 0; i < product.length; i++){
-  const option = document.createElement("option");
+const productList = document.getElementById("product-list");
+product.forEach((item, index) => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+  <img src="{item.image}" alt="${item.name}">
+  <p class="product-name>${item.name}</p>
+  <p>${item.price}円</p>
+  <p>${item.temp}</p>
+  <button onclick="buyProduct(${index})">
+    購入
+  </button>
+  `;
 
-  option.value = i + 1 ;
-  option.textContent = 
-    `${i + 1}：${product[i].name} ${product[i].price}円`;
-  
-  select.appendChild(option);
+  productList.appendChild(card);
+})
+
+// お金を投入
+let insertedMoney = 0;
+
+const moneyDisplay =
+  document.getElementById("money-display");
+
+function insertMoney(amount){
+  if(insertedMoney + amount > 1000){
+    alert("1000円以上は投入できません");
+    return;
+  }
+
+  insertedMoney += amount;
+
+  moneyDisplay.textContent = insertedMoney;
 }
 
 const buyBtn = document.getElementById('buyBtn');
 
 buyBtn.addEventListener("click", () => {
-  const num1 = Number(
-    document.getElementById("money").value
-  );
+  const num1 = insertedMoney;
   const result =document.getElementById("result");
   // abc入力チェック
   if (Number.isNaN(num1) || document.getElementById("money").value === ""){
