@@ -1,0 +1,39 @@
+#product-list {
+/* 商品を横並びにして一覧表示する */
+  display: flex;
+  justify-content: center;
+
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 200px;
+  padding: 15px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.card img {
+  width: 120px;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.hot {
+  color: red;
+  font-weight: bold;
+}
+
+.cold {
+  color: blue;
+  font-weight: bold;
+}

@@ -3,7 +3,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
+
   <title>自動販売機</title>
+<!-- CSSファイルの読み込みは<head>タグ内に -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -16,7 +19,7 @@
       <img src="" alt="水">
       <p class="product-name">水</p>
       <p>100円</p>
-      <p class="card">つめたい</p>
+      <p class="cold">つめたい</p>
       <button>購入</button>
     </div>
 
@@ -24,7 +27,7 @@
       <img src="" alt="お茶">
       <p class="product-name">お茶</p>
       <p>120円</p>
-      <p class="card">つめたい</p>
+      <p class="cold">つめたい</p>
       <button>購入</button>
     </div>
 
@@ -32,7 +35,7 @@
       <img src="" alt="コーヒー">
       <p class="product-name">コーヒー</p>
       <p>130円</p>
-      <p class="card">つめたい</p>
+      <p class="cold">つめたい</p>
       <button>購入</button>
     </div>
 
@@ -40,7 +43,7 @@
       <img src="" alt="コーンポタージュ">
       <p class="product-name">コーンポタージュ</p>
       <p>140円</p>
-      <p class="card">あたたかい</p>
+      <p class="hot">あたたかい</p>
       <button>購入</button>
     </div>
 
@@ -48,7 +51,7 @@
       <img src="" alt="ココア">
       <p class="product-name">ココア</p>
       <p>150円</p>
-      <p class="card">あたたかい</p>
+      <p class="hot">あたたかい</p>
       <button>購入</button>
     </div>
 
@@ -56,7 +59,7 @@
       <img src="" alt="お茶">
       <p class="product-name">お茶</p>
       <p>120円</p>
-      <p class="card">あたたかい</p>
+      <p class="hot">あたたかい</p>
       <button>購入</button>
     </div>
   </section>
@@ -89,6 +92,7 @@
   <div id="result"></div>
   
   <footer></footer>
+<!-- JavaScriptファイルの読み込みは</body>の直前 -->
   <script src="/index.js"></script>
 </body>
 </html>
