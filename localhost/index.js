@@ -140,12 +140,15 @@ function insertMoney(amount){
 
 // 購入処理
 function buyProduct(index) {
+  // 選択商品の定数定義
   const selectedProduct = products[index];
 
   // 売切れチェック
   /* 処理側の制御(正しさ)
   -> 万が一buyProduct()が呼ばれても購入させないようにする */
+  /* 条件分岐で在庫数が0の時の処理 */
   if(selectedProduct.stock <= 0){
+    // ログに追加
     addLog(
     `${selectedProduct.name}は売り切れです`
     );
@@ -153,7 +156,9 @@ function buyProduct(index) {
   }
 
 // 金額チェック
+  /* 条件分岐で投入金額不足時の処理 */
   if(insertedMoney < selectedProduct.price){
+    // ログに追加
     addLog(
       `購入失敗：${selectedProduct.name}の購入には ${
       selectedProduct.price - insertedMoney}円不足しています`
@@ -162,9 +167,13 @@ function buyProduct(index) {
   }
 
 // 購入成立
+  /* 合計投入金額から選択商品の金額を引いて、
+     その金額を最新の合計投入金額とする */
   insertedMoney -= selectedProduct.price;
+  /* 購入されたら、選択商品の在庫を1減らす */
   selectedProduct.stock--;
 
+  /* moneyDisplayに合計投入金額を表示する */
   /* .textContent -> HTMLとして解釈せず文字として表示する */
   moneyDisplay.textContent = insertedMoney;
 
@@ -181,25 +190,35 @@ function buyProduct(index) {
 /* HTML要素への参照 */
 const refundBtn = document.getElementById("refundBtn");
 
+// 返金ボタンクリック時の処理
 refundBtn.addEventListener(
   "click",
   () => {
+    /* 条件分岐で残高0円時の処理 */
     if (insertedMoney === 0) {
+      // アラートの表示
       alert("返金するお金がありません");
       return;
     }
 
+    // おつり定数の定義
+    /* おつり返却のログ表示の前に合計投入金額が0に更新されてしまうため、
+    更新される前の残高を定数に格納しておく */
     const refundAmount = insertedMoney;
 
+    // アラートの表示
     alert(
       `${insertedMoney}円返却します`
     );
 
+    // 返却後は合計投入金額を0円に更新
     insertedMoney = 0;
 
+    /* moneyDisplayに合計投入金額を表示する */
     /* .textContent -> HTMLとして解釈せず文字として表示する */
     moneyDisplay.textContent = insertedMoney;
 
+    // ログに追加
     addLog(
       `${refundAmount}円を返金しました`
     );
