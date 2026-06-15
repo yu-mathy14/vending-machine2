@@ -61,6 +61,8 @@ function renderProducts(){
      index -> インデックス番号(商品番号を取り出す) */
   products.forEach((item, index) => {
     // 温度判定の定義
+    /* 三項演算子 -> if-e;se文による条件分岐を簡潔に記述する方法
+    ex) 条件式 ? 真の場合の値 : 偽の場合の値 */
     const tempClass =
       item.temp === TEMP.HOT ? "hot" : "cold";
     
@@ -72,6 +74,8 @@ function renderProducts(){
     // 在庫0なら売切扱い
     /* UI側の制御(利便性) -> 在庫が0になると購入ボタンを押せない */
     const isSoldOut = item.stock <= 0;
+    /* 三項演算子 -> if-e;se文による条件分岐を簡潔に記述する方法
+    ex) 条件式 ? 真の場合の値 : 偽の場合の値 */
     const disabledAttr = isSoldOut ? "disabled" : "";
     const buttonText = isSoldOut ? "売切" : "購入";
 
