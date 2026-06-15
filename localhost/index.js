@@ -1,4 +1,4 @@
-console.log("====自動販売機====");
+// console.log("====自動販売機====");
 // 飲み物温度の表示文言を一元管理するための変数
 /* 配列のtempのvalueに直接"あたたかい"や"つめたい"
    を打ち込むとタイプミスの可能性あり */
@@ -51,7 +51,7 @@ const products = [
 // 商品一覧表示
 /* HTML要素<section id="product-list"></section>への参照 */
 const productList = document.getElementById("product-list");
-// 商品一覧を画面に表示する(再表示)するための関数
+// 商品一覧を画面に表示(再表示)するための関数
 function renderProducts(){
   /* .innerHTML -> HTML文字列を要素に変換して中に入れる */
   /* productList.innerHTML -> productListの中にあるHTMLをすべて削除 */
