@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => {
 
   // トップページの場合
   if (req.url === "/") {
+    /* __dirname -> 自分のいるファイルの場所 */
     filePath = path.join(__dirname, "index.html");
   // それ以外
   } else {
