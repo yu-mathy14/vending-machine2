@@ -12,36 +12,42 @@ const TEMP = {
 /* idキーも追加した方がいい */
 const products = [
   {
+    id: 0,
     name: "水",
     price: 100,
     temp: TEMP.COLD,
     stock: 5
   },
   {
+    id: 1,
     name: "お茶",
     price: 120,
     temp: TEMP.COLD,
     stock: 5
   },
   {
+    id: 2,
     name: "コーヒー",
     price: 130,
     temp: TEMP.COLD,
     stock: 5
   },
   {
+    id: 3,
     name: "コーンポタージュ",
     price: 140,
     temp: TEMP.HOT,
     stock: 5
   },
   {
+    id: 4,
     name: "ココア",
     price: 150,
     temp: TEMP.HOT,
     stock: 5
   },
   {
+    id: 5,
     name: "お茶",
     price: 120,
     temp: TEMP.HOT,
@@ -61,7 +67,7 @@ function renderProducts(){
      item -> 配列内のオブジェクトの仮名(商品情報を取り出す)
      index -> インデックス番号(商品番号を取り出す)
       使わないほうがいい、固定の値(item.idなど)を使った方が良い */
-  products.forEach((item, index) => {
+  products.forEach((item) => {
     // 温度判定の定義
     /* 三項演算子 -> if-e;se文による条件分岐を簡潔に記述する方法
     ex) 条件式 ? 真の場合の値 : 偽の場合の値 */
@@ -90,7 +96,7 @@ function renderProducts(){
       <p class="${tempClass}">${item.temp}</p>
       <p>在庫：${item.stock}</p>
 
-      <button onclick="buyProduct(${index})" ${disabledAttr}>
+      <button onclick="buyProduct(${item.id})" ${disabledAttr}>
         ${buttonText}
       </button>
     `;

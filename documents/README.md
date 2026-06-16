@@ -31,7 +31,7 @@ node server.js
 3. ブラウザで以下のURLにアクセス
 http://localhost:3000
 
-## 4. 使用技術
+## 4.使用技術
 - HTML
 - CSS
 - JavaScript
